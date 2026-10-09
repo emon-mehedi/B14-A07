@@ -3,6 +3,7 @@ import logo from "@/assets/logo-icon.png"
 import Image from 'next/image';
 import { ICategory, IProduct } from '@/Types/Alltypes';
 import Marquee from 'react-fast-marquee';
+import Link from 'next/link';
 
 const Nav = async () => {
   const res1 = await fetch('https://api.api-store.workers.dev/api/bazardor/categories');
@@ -35,7 +36,7 @@ const Nav = async () => {
       <div className='shadow-sm'>
         <div className='container mx-auto flex flex-row gap-6 text-sm py-3'>
           {
-            data.map(category => <div key={category.id}>{category.icon}{category.nameBn}</div>)
+            data.map(category => <Link href={`/category/${category.slug}`}  key={category.id}><div>{category.icon}{category.nameBn}</div></Link>)
           }
         </div>
       </div>
