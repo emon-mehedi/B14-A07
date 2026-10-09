@@ -1,5 +1,6 @@
-import Card from '@/components/Card';
+import Sort from '@/components/Sort';
 import { ICategory, IProduct } from '@/Types/Alltypes';
+import Link from 'next/link';
 import React from 'react';
 
 const Category = async ({ params }: { params: { catName: string } }) => {
@@ -12,6 +13,15 @@ const Category = async ({ params }: { params: { catName: string } }) => {
   const data2: ICategory[] = await res2.json();
   //fetch category name
   const category = data2.find(category => category.slug === catName)
+
+  if(data.length===0){
+    return (
+      <div className='min-h-full text-center space-y-3 mt-5'>
+        <h1 className='text-5xl'>কোন পণ্য খুজে পাওয়া যায় নি</h1>
+        <Link href={'/'}><button className='btn'>হোম পেজে যান</button></Link>
+      </div>
+    )
+  } else{
   return (
     <div className='container mx-auto space-y-2 my-5'>
       <div className='flex flex-row bg-white rounded-2xl p-5 shadow-sm  border border-slate-100 gap-2'>
@@ -21,17 +31,19 @@ const Category = async ({ params }: { params: { catName: string } }) => {
           <p>{data.length} টি পণ্যের আজকের দাম ও পরিবর্তন</p>
         </div>
       </div>
-      <div className='flex flex-row justify-between'>
+
+      <Sort data={data}/>
+
+      {/* <div className='flex flex-row justify-between'>
         <div>মোট {data.length}টি পণ্য দেখানো হচ্ছে</div>
-        <div> সাজান <button className='btn'>ডিফল্ট</button></div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {
           data.map(product=><Card key={product.id} product={product}/>)
         }
-      </div>
+      </div> */}
     </div>
-  );
+  )};
 };
 
 export default Category;

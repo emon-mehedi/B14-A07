@@ -4,6 +4,7 @@ import Image from "next/image";
 import { IProduct } from "@/Types/Alltypes";
 import Card from "@/components/Card";
 import Link from "next/link";
+import Product from "./product/[id]/page";
 
 
 export default async function Home() {
@@ -48,6 +49,7 @@ export default async function Home() {
           {
           data
             .filter(product=>product.change.pct>0)
+            .sort((a,b)=>b.change.pct-a.change.pct)
             .slice(0,6)
             .map(product=><Card key={product.id} product={product}/>)
           }
@@ -61,6 +63,7 @@ export default async function Home() {
           
           data
             .filter(product=>product.change.pct<0)
+            .sort((a,b)=>a.change.pct-b.change.pct)
             .slice(0,6)
             .map(product=><Card key={product.id} product={product}/>)
           }
