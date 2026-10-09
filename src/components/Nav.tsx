@@ -3,16 +3,17 @@ import logo from "@/assets/logo-icon.png"
 import Image from 'next/image';
 import { ICategory, IProduct } from '@/Types/Alltypes';
 import Marquee from 'react-fast-marquee';
-import Link from 'next/link';
+import CategoryList from './CategoryList';
 
 const Nav = async () => {
-  const res1 = await fetch('https://api.api-store.workers.dev/api/bazardor/categories');
+  const res1 = await fetch('https://api.api-store.workers.dev/api/bazardor/categories',{next:{revalidate:3600}});
   const data: ICategory[] = await res1.json();
 
-  const res2 = await fetch('https://api.api-store.workers.dev/api/bazardor/products');
+  const res2 = await fetch('https://api.api-store.workers.dev/api/bazardor/products',{next:{revalidate:3600}});
   const products: IProduct[] = await res2.json();
 
   const date = new Date().toLocaleDateString("bn-BD", { dateStyle: 'full' });
+
   return (
     <header className='bg-white'>
       <nav className='shadow-sm'>
@@ -20,9 +21,9 @@ const Nav = async () => {
           <div className="flex-1">
             <div className='flex flex-row items-center gap-2'>
               <Image src={logo} height={40} width={40} alt='logo' className='bg-[#4c8b43] rounded-xl p-3' />
-              <div className='flex flex-col '>
-                <a className="text-xl font-bold">বাজার দর</a>
-                <p className='text-xs'>{date}</p>
+              <div className='flex flex-col'>
+                <a className="text-xl font-bold z-20">বাজার দর</a>
+                <span className='text-xs  bg-white'>{date}</span>
               </div>
             </div>
           </div>
@@ -35,9 +36,7 @@ const Nav = async () => {
 
       <div className='shadow-sm'>
         <div className='container mx-auto flex flex-row gap-6 text-sm py-3'>
-          {
-            data.map(category => <Link href={`/category/${category.slug}`}  key={category.id}><div>{category.icon}{category.nameBn}</div></Link>)
-          }
+          <CategoryList categories={data}/>
         </div>
       </div>
 

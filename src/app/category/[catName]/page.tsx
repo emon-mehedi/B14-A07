@@ -5,10 +5,10 @@ import React from 'react';
 const Category = async ({ params }: { params: { catName: string } }) => {
   const { catName } = await params;
   //fetch products of the category
-  const res = await fetch(`https://api.abcz.workers.dev/api/bazardor/products?category=${catName}`);
+  const res = await fetch(`https://api.abcz.workers.dev/api/bazardor/products?category=${catName}`,{next:{revalidate:3600}});
   const data: IProduct[] = await res.json();
   //fetch categories
-  const res2 = await fetch('https://api.abcz.workers.dev/api/bazardor/categories');
+  const res2 = await fetch('https://api.abcz.workers.dev/api/bazardor/categories',{next:{revalidate:3600}});
   const data2: ICategory[] = await res2.json();
   //fetch category name
   const category = data2.find(category => category.slug === catName)
