@@ -1,10 +1,16 @@
-'use client'
-import { FaCheckCircle, FaRocket } from "react-icons/fa";
-import { Bounce, toast, ToastContainer } from "react-toastify";
+import { Bounce, ToastContainer } from "react-toastify";
+import hero from '@/assets/bazar-hero.png'
+import Image from "next/image";
+import { IProduct } from "@/Types/Alltypes";
+import Card from "@/components/Card";
 
-export default function Home() {
+
+export default async function Home() {
+  const date=new Date().toLocaleDateString("bn-BD",{dateStyle:"full"});
+  const res= await fetch('https://api.api-store.workers.dev/api/bazardor/products');
+  const data:IProduct[]=await res.json();
   return (
-    <div>
+    <div className="container mx-auto space-y-5">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -18,28 +24,58 @@ export default function Home() {
         theme="light"
         transition={Bounce}
       />
-
-
-    {/* Delete from here */}
-      <div className="min-h-screen bg-base-200 flex flex-col items-center justify-center p-5">
-        <div className="card w-96 bg-base-100 shadow-xl p-6 text-center flex flex-col items-center">
-          <h1 className="text-2xl font-bold flex items-center justify-center gap-2 mb-4 text-blue-600">
-            <FaRocket className="text-primary" /> Welcome Mehedi
-          </h1>
-
-          <p className="text-gray-600 mb-6">
-            Tailwind CSS, DaisyUI, React Icons and React Hot Toast set up successfully
-          </p>
-
-          {/* DaisyUI Button with React Icon */}
-          <button onClick={() => {
-            toast.success('DaisyUI, Icons and Toast working correctly!');
-          }} className="btn btn-primary gap-2 flex flex-row items-center">
-            <FaCheckCircle /> <span>Test Toast Notification</span>
-          </button>
+      <div className="rounded-4xl mt-10 bg-white p-6">
+        <div>
+          <div className="flex flex-col lg:flex-row-reverse">
+            <Image src={hero} height={500} width={500} alt="hero"/>
+            <div>
+              <button className="btn rounded-2xl text-[#4c8b43] bg-[#e6f1e7]">{date}</button>
+              <h1 className="text-5xl font-bold">আজকের বাজার দাম এক নজরে</h1>
+              <p className="py-6">
+                চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম - বাজারভিত্তিক বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
+              </p>
+              <button className="btn bg-[#4c8b43] text-white">সব পণ্য দেখুন</button>
+            </div>
+          </div>
         </div>
       </div>
 
+
+      <div>
+        <h2>▲ আজ দাম বেড়েছে</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {
+          
+          data
+            .filter(product=>product.change.pct>0)
+            .slice(0,6)
+            .map(product=><Card key={product.id} product={product}/>)
+          }
+        </div>
+      </div>
+
+      <div>
+        <h2>▲ আজ দাম কমেছে</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {
+          
+          data
+            .filter(product=>product.change.pct<0)
+            .slice(0,6)
+            .map(product=><Card key={product.id} product={product}/>)
+          }
+        </div>
+      </div>
+
+      <div>
+        <h2>সব পণ্য</h2>
+        <p>মোট {data.length}টি পণ্য দেখানো হচ্ছে</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {
+          data.map(product=><Card key={product.id} product={product}/>)
+          }
+        </div>
+      </div>
     </div>
   );
 }
