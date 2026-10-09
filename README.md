@@ -40,10 +40,10 @@ Endpoints:
 ---
 
 ## 🐣 Basic Requirements (Must Do for Everyone)
-- Your app must work on all screen sizes — mobile, tablet, and desktop
+- ❌Your app must work on all screen sizes — mobile, tablet, and desktop
 - Make at least 8 Git commits with clear, meaningful messages
 - Your app must run without any errors after deployment
-- Add a nice README.md file with your project name, description, technologies used, and features(minimum 5)
+- ❌Add a nice README.md file with your project name, description, technologies used, and features(minimum 5)
 
 ---
 
@@ -56,7 +56,7 @@ Endpoints:
 - Put your logo on the left side: `🛒 বাজার দর` + Bangla date underneath.
 - Put your navigation links in a second row / middle — category links.
 - The active category link should look different (highlighted).
-- **Right-side auth buttons**: `সাইন ইন` + `সাইন আপ`. When logged in, show profile / sign-out instead.
+- ❌**Right-side auth buttons**: `সাইন ইন` + `সাইন আপ`. When logged in, show profile / sign-out instead.
 - **Price ticker (marquee) below navbar**: infinite scrolling strip showing `emoji + name + দাম টাকা/একক + ▲/▼ %` 
 
 ---
@@ -75,7 +75,7 @@ Endpoints:
 
 ### 3. ⚖️ The Product Sections (Home Page)
 
-- **Section A — “আজ দাম বেড়েছে ▲”**: Top 6 risers. 
+- ❌**Section A — “আজ দাম বেড়েছে ▲”**: Top 6 risers. 
 - **Section B — “আজ দাম কমেছে ▼”**: Top 6 fallers. 
 - **Section C — “সব পণ্য” with subtitle** .
 - Display all products from JSON data as cards in a **responsive grid** (3-4 cols on large screens, collapses on mobile). Must be responsive.
