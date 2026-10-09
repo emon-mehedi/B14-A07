@@ -3,6 +3,7 @@ import { Hind_Siliguri } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import Marq from "@/components/Marquee";
 
 const siliguri = Hind_Siliguri({
   variable: "--font-hind-siliguri",
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className={`${siliguri.className} min-h-screen flex flex-col bg-[#e6f1e7]`}>
         <Nav />
+        <Marq/>
         <main className="flex-1">
           {children}
         </main>

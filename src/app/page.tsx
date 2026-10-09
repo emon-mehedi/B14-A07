@@ -42,7 +42,7 @@ export default async function Home() {
 
 
       <div>
-        <h2>▲ আজ দাম বেড়েছে</h2>
+        <h2 className="text-2xl font-semibold"><span className="text-red-600">▲</span> আজ দাম বেড়েছে</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {
           
@@ -55,7 +55,7 @@ export default async function Home() {
       </div>
 
       <div>
-        <h2>▲ আজ দাম কমেছে</h2>
+        <h2 className="text-2xl font-semibold"><span className="text-green-600">▲</span> আজ দাম কমেছে</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {
           
@@ -68,7 +68,7 @@ export default async function Home() {
       </div>
 
       <div>
-        <h2>সব পণ্য</h2>
+        <h2 className="text-2xl font-semibold">সব পণ্য</h2>
         <p>মোট {data.length}টি পণ্য দেখানো হচ্ছে</p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {

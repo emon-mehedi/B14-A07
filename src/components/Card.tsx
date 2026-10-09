@@ -1,9 +1,11 @@
 import { IProduct } from '@/Types/Alltypes';
+import Link from 'next/link';
 
 const Card = ({ product }: { product: IProduct }) => {
   const isIncreased = product.change.pct >= 0;
   return (
-    <div className="bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300 border border-slate-100 flex flex-col justify-between gap-4 max-w-sm">
+    <Link href={`/product/${product.id}`}>
+    <div className="bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300 border border-slate-100 flex flex-col justify-between gap-4 max-w-sm hover:border-green-600">
       <div className="flex items-center gap-4">
         <div className="h-16 w-16 min-w-16 rounded-xl bg-slate-50 border border-slate-100 p-2 flex items-center justify-center overflow-hidden text-4xl">
           {product.image}
@@ -41,6 +43,7 @@ const Card = ({ product }: { product: IProduct }) => {
         </div>
       </div>
     </div>
+    </Link>
   );
 };
 

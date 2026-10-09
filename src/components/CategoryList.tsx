@@ -13,8 +13,8 @@ const CategoryList = ({ categories }: CategoryListProps) => {
   const pathname = usePathname();
 
   return (
-    <div className='shadow-sm'>
-      <div className='container mx-auto flex flex-row gap-6 text-sm py-3 overflow-x-auto'>
+    <div>
+      <div className='container mx-auto flex flex-row gap-6 text-sm overflow-x-auto'>
         {categories.map((category) => {
           const categoryPath = `/category/${category.slug}`;
           const isActive = pathname === categoryPath;

@@ -1,26 +1,23 @@
 import React from 'react';
 import logo from "@/assets/logo-icon.png"
 import Image from 'next/image';
-import { ICategory, IProduct } from '@/Types/Alltypes';
-import Marquee from 'react-fast-marquee';
+import { ICategory} from '@/Types/Alltypes';
 import CategoryList from './CategoryList';
+import Link from 'next/link';
 
 const Nav = async () => {
   const res1 = await fetch('https://api.api-store.workers.dev/api/bazardor/categories',{next:{revalidate:3600}});
   const data: ICategory[] = await res1.json();
 
-  const res2 = await fetch('https://api.api-store.workers.dev/api/bazardor/products',{next:{revalidate:3600}});
-  const products: IProduct[] = await res2.json();
-
   const date = new Date().toLocaleDateString("bn-BD", { dateStyle: 'full' });
 
   return (
-    <header className='bg-white'>
+    <header className='bg-white sticky top-0 z-10'>
       <nav className='shadow-sm'>
         <div className="navbar bg-base-100 container mx-auto">
           <div className="flex-1">
             <div className='flex flex-row items-center gap-2'>
-              <Image src={logo} height={40} width={40} alt='logo' className='bg-[#4c8b43] rounded-xl p-3' />
+              <Link href={'/'}><Image src={logo} height={40} width={40} alt='logo' className='bg-[#4c8b43] rounded-xl p-3' /></Link>
               <div className='flex flex-col'>
                 <a className="text-xl font-bold z-20">বাজার দর</a>
                 <span className='text-xs  bg-white'>{date}</span>
@@ -34,23 +31,11 @@ const Nav = async () => {
         </div>
       </nav>
 
-      <div className='shadow-sm'>
+      <div>
         <div className='container mx-auto flex flex-row gap-6 text-sm py-3'>
           <CategoryList categories={data}/>
         </div>
       </div>
-
-      <Marquee>
-        {
-          products.map(product =>
-            <div key={product.id} className="px-5 py-2 border border-gray-300 gap-2 text-sm space-x-2 font-extralight">
-              <span>{product.image}</span>
-              <span>{product.nameBn}</span>
-              <span>{product.today}/{product.unit}</span>
-              <span>{product.change.pct > 0 ? `▲${product.change.pct}%` : `▼ ${Math.abs(product.change.pct)}%`}</span>
-            </div>)
-        }
-      </Marquee>
     </header>
   );
 };
