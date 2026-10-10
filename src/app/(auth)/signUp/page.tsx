@@ -33,6 +33,7 @@ export default function SignUp() {
       password: data.password,
       callbackURL: '/'
     })
+    toast.success("সাইন আপ সফলভাবে সম্পন্ন হয়েছে")
     if (resData) {
       console.log("after submitting", resData);
       redirect("/");
@@ -41,7 +42,6 @@ export default function SignUp() {
       console.log(error)
     }
 
-    toast.success("Form submitted!")
   };
 
   return (

@@ -43,7 +43,7 @@ const Profile = () => {
             <p>{session?.user.email}</p>
           </div>
         </div>
-        <Link href={'/signIn'} onClick={() => signOut()} className='text-red-600 border border-red-600 rounded-xl flex flex-row justify-center items-center p-2'>
+        <Link href={'/signIn'} onClick={() => {signOut(); toast.success("সাইন আউট সফলভাবে সম্পন্ন হয়েছে")}} className='text-red-600 border border-red-600 rounded-xl flex flex-row justify-center items-center p-2'>
           <PiArrowBendDownLeft /> <span>সাইন আউট</span>
         </Link>
       </div>

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import React from 'react';
 import { ImUser } from 'react-icons/im';
 import { PiArrowBendDownLeft } from 'react-icons/pi';
+import { toast } from 'react-toastify';
 
 const NavBetterAuth = () => {
   const { data: session, isPending } = useSession();
@@ -39,7 +40,7 @@ const NavBetterAuth = () => {
               <ul tabIndex={-1} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-4 shadow-sm">
                 <li>{session.user.name}<br></br>{session.user.email}</li>
                 <li className='hover:bg-base-200'><Link href={'/profile'}><ImUser /><span>আমার প্রফাইল</span></Link></li>
-                <li className='hover:bg-base-200 text-red-600'><Link href={'/signIn'} onClick={() => signOut()}><PiArrowBendDownLeft /> <span>সাইন আউট</span></Link></li>
+                <li className='hover:bg-base-200 text-red-600'><Link href={'/signIn'} onClick={() => {signOut(); toast.success("সাইন আউট সফলভাবে সম্পন্ন হয়েছে")}}><PiArrowBendDownLeft /> <span>সাইন আউট</span></Link></li>
               </ul>
             </div>
 

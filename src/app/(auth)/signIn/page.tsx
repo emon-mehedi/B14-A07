@@ -37,7 +37,7 @@ export default function SignIn() {
       console.log(error);
     }
 
-    toast.success("Form submitted!")
+    toast.success("সাইন ইন সফলভাবে সম্পন্ন হয়েছে")
   };
 
   return (
