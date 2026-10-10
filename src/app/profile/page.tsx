@@ -33,7 +33,7 @@ const Profile = () => {
       <div className='flex flex-row justify-between items-center bg-white rounded-2xl p-4'>
         <div className='flex flex-row justify-center items-center gap-2'>
           {session?.user.image
-            ? <Image src={session.user.image} alt={session.user.name || "User"} className="w-12 h-12 rounded-xl object-cover" />
+            ? <Image src={session.user.image} alt={session.user.name || "User"} width={12} height={12} className="w-12 h-12 rounded-xl object-cover" />
             : <div className="w-12 h-12 rounded-xl bg-primary text-primary-content flex items-center justify-center font-bold">
               {session?.user.name?.charAt(0).toUpperCase() || "?"}
             </div>

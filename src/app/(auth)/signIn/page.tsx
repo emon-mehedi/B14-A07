@@ -35,9 +35,11 @@ export default function SignIn() {
     }
     if (error){
       console.log(error);
+      toast.error(error.message)
+    } else {
+      toast.success("সাইন ইন সফলভাবে সম্পন্ন হয়েছে")
     }
 
-    toast.success("সাইন ইন সফলভাবে সম্পন্ন হয়েছে")
   };
 
   return (

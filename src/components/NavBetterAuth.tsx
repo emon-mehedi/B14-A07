@@ -1,6 +1,6 @@
 'use client'
 import { signOut, useSession } from '@/lib/auth-client';
-import { Avatar, Spinner } from '@heroui/react';
+import { Spinner } from '@heroui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -30,7 +30,7 @@ const NavBetterAuth = () => {
               <div tabIndex={0} role="button" className="btn m-1">
                                      {/* Avatar */}
                 {session.user.image 
-                  ? <Image src={session.user.image} alt={session.user.name || "User"} className="w-8 h-8 rounded-xl object-cover"/>
+                  ? <Image src={session.user.image} alt={session.user.name || "User"} width={8} height={8} className="w-8 h-8 rounded-xl object-cover"/>
                   : <div className="w-8 h-8 rounded-xl bg-primary text-primary-content flex items-center justify-center font-bold">
                       {session.user.name?.charAt(0).toUpperCase() || "?"}
                     </div>

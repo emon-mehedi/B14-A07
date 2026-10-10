@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Button,
   Description,
@@ -12,8 +11,10 @@ import {
 import Link from "next/link";
 import { HiOutlineArrowLongLeft } from "react-icons/hi2";
 import { toast } from "react-toastify";
-import { signUp } from '@/lib/auth-client'
+import { signUp, signIn } from '@/lib/auth-client'
 import { redirect } from "next/navigation";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 export default function SignUp() {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -33,15 +34,23 @@ export default function SignUp() {
       password: data.password,
       callbackURL: '/'
     })
-    toast.success("সাইন আপ সফলভাবে সম্পন্ন হয়েছে")
     if (resData) {
       console.log("after submitting", resData);
       redirect("/");
     }
     if (error) {
-      console.log(error)
+      console.log(error);
+      toast.error(error.message)
+    } else {
+      toast.success("সাইন আপ সফলভাবে সম্পন্ন হয়েছে")
     }
+  };
 
+  const handleGoogleSignIn = async () => {
+    const data = await signIn.social({
+      provider: "google",
+    });
+    console.log(data)
   };
 
   return (
@@ -124,11 +133,30 @@ export default function SignUp() {
           <FieldError />
         </TextField>
 
-
         <Button type="submit" className='bg-green-600 rounded-xl w-full'>একাউন্ট তৈরি করুন</Button>
 
+        <div className="flex w-full flex-col">
+          <div className="divider my-0">অথবা</div>
+        </div>
+
+        <div className="flex flex-row justify-between items-center gap-2">
+          <Button onClick={()=>handleGoogleSignIn()} className="flex-1 rounded-xl bg-white text-black border border-black py-5">
+            <FcGoogle />
+            <span>Google দিয়ে <br></br>চালিয়ে যান</span>
+          </Button>
+          <Button className="flex-1 rounded-xl bg-white text-black border border-black py-5">
+            <FaGithub />
+            <span>Github দিয়ে<br></br> চালিয়ে যান</span>
+          </Button>
+        </div>
+
+        <div className="text-center">
+          একাউন্ট আছে? <Link href={'/signIn'} className="underline text-green-600">সাইন ইন করুন</Link>
+        </div>
       </Form>
       <Link href={'/'}><div className="flex flex-row items-center"><HiOutlineArrowLongLeft /> <span>হোম পেজে ফিরে যান</span></div></Link>
+
+
     </div>
   );
 }
