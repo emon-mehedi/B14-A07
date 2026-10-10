@@ -34,14 +34,6 @@ const Category = async ({ params }: { params: { catName: string } }) => {
 
       <Sort data={data}/>
 
-      {/* <div className='flex flex-row justify-between'>
-        <div>মোট {data.length}টি পণ্য দেখানো হচ্ছে</div>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {
-          data.map(product=><Card key={product.id} product={product}/>)
-        }
-      </div> */}
     </div>
   )};
 };

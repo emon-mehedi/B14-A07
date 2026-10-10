@@ -15,7 +15,7 @@ const Sort = ({ data }: { data: IProduct[] }) => {
     <>
       <div className='flex flex-row justify-between'>
         <div>মোট {data.length}টি পণ্য দেখানো হচ্ছে</div>
-        <select className="select rounded-xl" onChange={(e) => { setSortby(e.target.value as "default" | "lowHigh" | "highLow") }}>
+        <select className="select rounded-xl pt-2" onChange={(e) => { setSortby(e.target.value as "default" | "lowHigh" | "highLow") }}>
           <option value="default">ডিফল্ট</option>
           <option value="lowHigh">দাম: কম থেকে বেশি</option>
           <option value="highLow">দাম: বেশি থেকে কম</option>

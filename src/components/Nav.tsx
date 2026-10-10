@@ -26,9 +26,9 @@ const Nav = async () => {
               </div>
             </Link>
           </div>
-          <div className="flex flex-row gap-2">
-            <button>Sign In</button>
-            <button className='btn btn-sm bg-[#4c8b43] text-white'>Sign Up</button>
+          <div className="flex flex-row gap-2 justify-center items-center">
+            <Link href={'/signIn'}><button>Sign In</button></Link>
+            <Link href={'/signUp'}><button className='btn btn-sm bg-[#4c8b43] text-white'>Sign Up</button></Link>
           </div>
         </div>
       </nav>

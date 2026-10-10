@@ -26,7 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className={`${siliguri.className} min-h-screen flex flex-col bg-[#e6f1e7]`}>
         <Nav />
         <Marq/>
-        <main className="flex-1">
+        <main className="flex flex-col justify-center items-center flex-1">
           {children}
         </main>
         <Footer/>
