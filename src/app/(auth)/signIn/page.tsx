@@ -11,11 +11,13 @@ import {
   TextField,
 } from "@heroui/react";
 import Link from "next/link";
+import { FaGithub } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import { HiOutlineArrowLongLeft } from "react-icons/hi2";
 import { toast } from "react-toastify";
 
 export default function SignIn() {
-  const onSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
@@ -25,22 +27,35 @@ export default function SignIn() {
       data[key] = value.toString();
     });
     console.log("data before submitting", data);
-    const {data:resData,error}=await signIn.email({
-      email:data.email,
-      password:data.password,
-      callbackURL:"/"
+    const { data: resData, error } = await signIn.email({
+      email: data.email,
+      password: data.password,
+      callbackURL: "/"
     })
-    if(resData){
+    if (resData) {
       console.log(resData);
     }
-    if (error){
+    if (error) {
       console.log(error);
       toast.error(error.message)
     } else {
       toast.success("সাইন ইন সফলভাবে সম্পন্ন হয়েছে")
     }
-
   };
+
+  const handleGoogleSignIn = async () => {
+    const data = await signIn.social({
+      provider: "google",
+    });
+    console.log(data)
+  };
+
+  const handleGithubSignIn = async () => {
+    const data = await signIn.social({
+      provider: "github"
+    })
+    console.log(data)
+  }
 
   return (
     <div className="flex flex-col justify-center items-center space-y-5">
@@ -94,6 +109,26 @@ export default function SignIn() {
         </TextField>
 
         <Button type="submit" className='bg-green-600 rounded-xl w-full'>সাইন ইন</Button>
+
+        <div className="flex w-full flex-col">
+          <div className="divider my-0">অথবা</div>
+        </div>
+
+        <div className="flex flex-row justify-between items-center gap-2">
+          <Button onClick={() => handleGoogleSignIn()} className="flex-1 rounded-xl bg-white text-black border border-black py-5">
+            <FcGoogle />
+            <span>Google দিয়ে <br></br>চালিয়ে যান</span>
+          </Button>
+          <Button onClick={() => handleGithubSignIn()} className="flex-1 rounded-xl bg-white text-black border border-black py-5">
+            <FaGithub />
+            <span>Github দিয়ে<br></br> চালিয়ে যান</span>
+          </Button>
+        </div>
+
+        <div className="text-center">
+          একাউন্ট আছে? <Link href={'/signIn'} className="underline text-green-600">সাইন ইন করুন</Link>
+        </div>
+
       </Form>
       <Link href={'/'}><div className="flex flex-row items-center"><HiOutlineArrowLongLeft /> <span>হোম পেজে ফিরে যান</span></div></Link>
     </div>
