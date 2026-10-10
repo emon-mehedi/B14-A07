@@ -1,10 +1,8 @@
-import { Bounce, ToastContainer } from "react-toastify";
 import hero from '@/assets/bazar-hero.png'
 import Image from "next/image";
 import { IProduct } from "@/Types/Alltypes";
 import Card from "@/components/Card";
 import Link from "next/link";
-import Product from "./product/[id]/page";
 
 
 export default async function Home() {
@@ -13,19 +11,7 @@ export default async function Home() {
   const data:IProduct[]=await res.json();
   return (
     <div className="container mx-auto space-y-5">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition={Bounce}
-      />
+      
       <div className="rounded-4xl mt-10 bg-white p-6">
         <div>
           <div className="flex flex-col lg:flex-row-reverse">

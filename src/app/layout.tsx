@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Marq from "@/components/Marquee";
+import { Bounce, ToastContainer } from "react-toastify";
 
 const siliguri = Hind_Siliguri({
   variable: "--font-hind-siliguri",
@@ -30,6 +31,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <Footer/>
+        <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition={Bounce}
+              />
       </body>
     </html>
   );

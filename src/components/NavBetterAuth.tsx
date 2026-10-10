@@ -29,8 +29,8 @@ const NavBetterAuth = () => {
               <div tabIndex={0} role="button" className="btn m-1">
                                      {/* Avatar */}
                 {session.user.image 
-                  ? <Image src={session.user.image} alt={session.user.name || "User"} className="w-8 h-8 rounded-full object-cover"/>
-                  : <div className="w-8 h-8 rounded-full bg-primary text-primary-content flex items-center justify-center font-bold">
+                  ? <Image src={session.user.image} alt={session.user.name || "User"} className="w-8 h-8 rounded-xl object-cover"/>
+                  : <div className="w-8 h-8 rounded-xl bg-primary text-primary-content flex items-center justify-center font-bold">
                       {session.user.name?.charAt(0).toUpperCase() || "?"}
                     </div>
                 }
