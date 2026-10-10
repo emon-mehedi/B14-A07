@@ -53,6 +53,13 @@ export default function SignUp() {
     console.log(data)
   };
 
+  const handleGithubSignIn = async () => {
+    const data = await signIn.social({
+        provider: "github"
+    })
+    console.log(data)
+  }
+
   return (
     <div className="flex flex-col justify-center items-center space-y-5">
       <div className="flex flex-col justify-center items-center">
@@ -144,7 +151,7 @@ export default function SignUp() {
             <FcGoogle />
             <span>Google দিয়ে <br></br>চালিয়ে যান</span>
           </Button>
-          <Button className="flex-1 rounded-xl bg-white text-black border border-black py-5">
+          <Button onClick={()=>handleGithubSignIn()} className="flex-1 rounded-xl bg-white text-black border border-black py-5">
             <FaGithub />
             <span>Github দিয়ে<br></br> চালিয়ে যান</span>
           </Button>
