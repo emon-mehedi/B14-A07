@@ -9,7 +9,7 @@ import Product from "./product/[id]/page";
 
 export default async function Home() {
   const date=new Date().toLocaleDateString("bn-BD",{dateStyle:"full"});
-  const res= await fetch('https://api.api-store.workers.dev/api/bazardor/products');
+  const res= await fetch('https://api.abcz.workers.dev/api/bazardor/products');
   const data:IProduct[]=await res.json();
   return (
     <div className="container mx-auto space-y-5">
@@ -57,7 +57,7 @@ export default async function Home() {
       </div>
 
       <div>
-        <h2 className="text-2xl font-semibold"><span className="text-green-600">▲</span> আজ দাম কমেছে</h2>
+        <h2 className="text-2xl font-semibold"><span className="text-green-600">▼</span> আজ দাম কমেছে</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {
           

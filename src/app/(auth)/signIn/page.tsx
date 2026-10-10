@@ -1,5 +1,6 @@
 "use client";
 
+import { signIn } from "@/lib/auth-client";
 import {
   Button,
   Description,
@@ -14,7 +15,7 @@ import { HiOutlineArrowLongLeft } from "react-icons/hi2";
 import { toast } from "react-toastify";
 
 export default function SignIn() {
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
@@ -23,7 +24,18 @@ export default function SignIn() {
     formData.forEach((value, key) => {
       data[key] = value.toString();
     });
-    console.log("data before submitting", data)
+    console.log("data before submitting", data);
+    const {data:resData,error}=await signIn.email({
+      email:data.email,
+      password:data.password,
+      callbackURL:"/"
+    })
+    if(resData){
+      console.log(resData);
+    }
+    if (error){
+      console.log(error);
+    }
 
     toast.success("Form submitted!")
   };
@@ -79,7 +91,7 @@ export default function SignIn() {
           <FieldError />
         </TextField>
 
-        <Button type="submit" className='bg-green-600 rounded-xl w-full'>একাউন্ট তৈরি করুন</Button>
+        <Button type="submit" className='bg-green-600 rounded-xl w-full'>সাইন ইন</Button>
       </Form>
       <Link href={'/'}><div className="flex flex-row items-center"><HiOutlineArrowLongLeft /> <span>হোম পেজে ফিরে যান</span></div></Link>
     </div>

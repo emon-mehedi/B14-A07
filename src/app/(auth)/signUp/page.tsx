@@ -12,9 +12,11 @@ import {
 import Link from "next/link";
 import { HiOutlineArrowLongLeft } from "react-icons/hi2";
 import { toast } from "react-toastify";
+import { signUp } from '@/lib/auth-client'
+import { redirect } from "next/navigation";
 
 export default function SignUp() {
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
@@ -24,6 +26,20 @@ export default function SignUp() {
       data[key] = value.toString();
     });
     console.log("data before submitting", data)
+
+    const { data: resData, error } = await signUp.email({
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      callbackURL: '/'
+    })
+    if (resData) {
+      console.log("after submitting", resData);
+      redirect("/");
+    }
+    if (error) {
+      console.log(error)
+    }
 
     toast.success("Form submitted!")
   };
@@ -38,7 +54,7 @@ export default function SignUp() {
         {/* Name */}
         <TextField isRequired name="name" >
           <Label>নাম</Label>
-          <Input placeholder="যেমন: রহিম উদ্দীন" className='w-full'/>
+          <Input placeholder="যেমন: রহিম উদ্দীন" className='w-full' />
           <FieldError />
         </TextField>
 
@@ -55,7 +71,7 @@ export default function SignUp() {
           }}
         >
           <Label>ইমেইল</Label>
-          <Input placeholder="john@example.com" className='w-full'/>
+          <Input placeholder="john@example.com" className='w-full' />
           <FieldError />
         </TextField>
 
@@ -79,7 +95,7 @@ export default function SignUp() {
           }}
         >
           <Label>পাসওয়ার্ড</Label>
-          <Input placeholder="কমপক্ষে ৮ অক্ষর" className='w-full'/>
+          <Input placeholder="কমপক্ষে ৮ অক্ষর" className='w-full' />
           <Description>
             At least 8 characters, with 1 uppercase letter and 1 number.
           </Description>
@@ -104,12 +120,12 @@ export default function SignUp() {
           }}
         >
           <Label>পাসওয়ার্ড নিশ্চিত করুন</Label>
-          <Input placeholder="আবার লিখুন" className='w-full'/>
+          <Input placeholder="আবার লিখুন" className='w-full' />
           <FieldError />
         </TextField>
 
 
-          <Button type="submit" className='bg-green-600 rounded-xl w-full'>একাউন্ট তৈরি করুন</Button>
+        <Button type="submit" className='bg-green-600 rounded-xl w-full'>একাউন্ট তৈরি করুন</Button>
 
       </Form>
       <Link href={'/'}><div className="flex flex-row items-center"><HiOutlineArrowLongLeft /> <span>হোম পেজে ফিরে যান</span></div></Link>

@@ -4,12 +4,15 @@ import Image from 'next/image';
 import { ICategory } from '@/Types/Alltypes';
 import CategoryList from './CategoryList';
 import Link from 'next/link';
+import NavBetterAuth from './NavBetterAuth';
 
 const Nav = async () => {
   const res1 = await fetch('https://api.api-store.workers.dev/api/bazardor/categories', { next: { revalidate: 3600 } });
   const data: ICategory[] = await res1.json();
 
   const date = new Date().toLocaleDateString("bn-BD", { dateStyle: 'full' });
+
+  
 
   return (
     <header className='bg-white sticky top-0 z-10'>
@@ -26,10 +29,7 @@ const Nav = async () => {
               </div>
             </Link>
           </div>
-          <div className="flex flex-row gap-2 justify-center items-center">
-            <Link href={'/signIn'}><button>Sign In</button></Link>
-            <Link href={'/signUp'}><button className='btn btn-sm bg-[#4c8b43] text-white'>Sign Up</button></Link>
-          </div>
+          <NavBetterAuth/>
         </div>
       </nav>
 
