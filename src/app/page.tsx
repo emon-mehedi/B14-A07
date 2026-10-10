@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default async function Home() {
   const date=new Date().toLocaleDateString("bn-BD",{dateStyle:"full"});
-  const res= await fetch('https://api.abcz.workers.dev/api/bazardor/products');
+  const res= await fetch('https://openapi.programming-hero.com/api/bazardor/products');
   const data:IProduct[]=await res.json();
   return (
     <div className="container mx-auto space-y-5">

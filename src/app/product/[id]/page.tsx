@@ -4,7 +4,7 @@ import React from 'react';
 
 const Product = async ({ params }: { params: { id: number } }) => {
   const { id } = await params;
-  const res = await fetch(`https://api.abcz.workers.dev/api/bazardor/products/${id}`);
+  const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products/${id}`);
   const product: IProduct = await res.json();
 
   if (!res.ok) {
