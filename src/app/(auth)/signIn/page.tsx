@@ -58,12 +58,12 @@ export default function SignIn() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center space-y-5">
-      <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center space-y-5 my-2 md:my-0 max-w-full md:w-sm mx-2 md:mx-0 px-2 md:px-0">
+      <div className="flex flex-col justify-center items-center mx-2 md:mx-0 w-full">
         <h2 className="text-2xl font-bold">সাইন ইন</h2>
         <p>বিস্তারিত দাম, বাজার তুলনা ও প্রফাইল দেখতে একাউন্ট করুন।</p>
       </div>
-      <Form className="flex w-96 flex-col gap-4 bg-white p-5 rounded-2xl" onSubmit={onSubmit}>
+      <Form className="flex w-full flex-col gap-4 bg-white p-5 rounded-2xl" onSubmit={onSubmit}>
         {/* Email */}
         <TextField
           isRequired
@@ -115,11 +115,11 @@ export default function SignIn() {
         </div>
 
         <div className="flex flex-row justify-between items-center gap-2">
-          <Button onClick={() => handleGoogleSignIn()} className="flex-1 rounded-xl bg-white text-black border border-black py-5">
+          <Button onClick={() => handleGoogleSignIn()} className="flex-1 rounded-xl bg-white text-black border border-black py-5 max-w-[49%]">
             <FcGoogle />
             <span>Google দিয়ে <br></br>চালিয়ে যান</span>
           </Button>
-          <Button onClick={() => handleGithubSignIn()} className="flex-1 rounded-xl bg-white text-black border border-black py-5">
+          <Button onClick={() => handleGithubSignIn()} className="flex-1 rounded-xl bg-white text-black border border-black py-5 max-w-[49%]">
             <FaGithub />
             <span>Github দিয়ে<br></br> চালিয়ে যান</span>
           </Button>
