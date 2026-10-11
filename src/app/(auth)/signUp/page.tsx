@@ -15,8 +15,12 @@ import { signUp, signIn } from '@/lib/auth-client'
 import { redirect } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { useRef } from "react"; // useRef ইম্পোর্ট করা হয়েছে
 
 export default function SignUp() {
+  // পাসওয়ার্ড রেফারেন্সের জন্য useRef ব্যবহার করা হয়েছে
+  const passwordRef = useRef<string>("");
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -42,7 +46,7 @@ export default function SignUp() {
       console.log(error);
       toast.error(error.message)
     } else {
-      toast.success("সাইন আপ সফলভাবে সম্পন্ন হয়েছে")
+      toast.success("সাইন আপ সফলভাবে সম্পন্ন হয়েছে")
     }
   };
 
@@ -97,6 +101,9 @@ export default function SignUp() {
           minLength={8}
           name="password"
           type="password"
+          onChange={(value) => {
+            passwordRef.current = value; // পাসওয়ার্ড পরিবর্তন হলে রেফারেন্সে সেভ করা হচ্ছে
+          }}
           validate={(value) => {
             if (value.length < 8) {
               return "Password must be at least 8 characters";
@@ -110,7 +117,7 @@ export default function SignUp() {
             return null;
           }}
         >
-          <Label>পাসওয়ার্ড</Label>
+          <Label>পাসওয়ার্ড</Label>
           <Input placeholder="কমপক্ষে ৮ অক্ষর" className='w-full' />
           <Description>
             At least 8 characters, with 1 uppercase letter and 1 number.
@@ -124,18 +131,13 @@ export default function SignUp() {
           name="confirmPassword"
           type="password"
           validate={(value) => {
-            const form = document.querySelector("form");
-            const password =
-              form ? new FormData(form).get("password")?.toString() ?? "" : "";
-
-            if (value !== password) {
+            if (value !== passwordRef.current) {
               return "Passwords do not match";
             }
-
             return null;
           }}
         >
-          <Label>পাসওয়ার্ড নিশ্চিত করুন</Label>
+          <Label>পাসওয়ার্ড নিশ্চিত করুন</Label>
           <Input placeholder="আবার লিখুন" className='w-full' />
           <FieldError />
         </TextField>
@@ -149,11 +151,11 @@ export default function SignUp() {
         <div className="flex flex-row justify-between items-center gap-2">
           <Button onClick={()=>handleGoogleSignIn()} className="flex-1 rounded-xl bg-white text-black border border-black py-5">
             <FcGoogle />
-            <span>Google দিয়ে <br></br>চালিয়ে যান</span>
+            <span>Google দিয়ে <br></br>চালিয়ে যান</span>
           </Button>
           <Button onClick={()=>handleGithubSignIn()} className="flex-1 rounded-xl bg-white text-black border border-black py-5">
             <FaGithub />
-            <span>Github দিয়ে<br></br> চালিয়ে যান</span>
+            <span>Github দিয়ে<br></br> চালিয়ে যান</span>
           </Button>
         </div>
 
@@ -162,8 +164,6 @@ export default function SignUp() {
         </div>
       </Form>
       <Link href={'/'}><div className="flex flex-row items-center"><HiOutlineArrowLongLeft /> <span>হোম পেজে ফিরে যান</span></div></Link>
-
-
     </div>
   );
 }
