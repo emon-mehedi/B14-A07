@@ -12,14 +12,14 @@ export default async function Home() {
   return (
     <div className="container mx-auto space-y-5">
       
-      <div className="rounded-4xl mt-10 bg-white p-6">
+      <div className="rounded-4xl mt-10 bg-white p-6 mx-2 md:mx-0">
         <div>
           <div className="flex flex-col lg:flex-row-reverse">
             <Image src={hero} height={500} width={500} alt="hero"/>
             <div>
               <span className="btn rounded-2xl text-[#4c8b43] bg-[#e6f1e7]">{date}</span>
-              <h1 className="text-5xl font-bold">আজকের বাজার দাম এক নজরে</h1>
-              <p className="py-6">
+              <h1 className="text-3xl md:text-5xl font-bold">আজকের বাজার দাম এক নজরে</h1>
+              <p className="py-6 text-sm md:text-md">
                 চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম - বাজারভিত্তিক বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
               </p>
               <Link href='#all'><button className="btn bg-[#4c8b43] text-white">সব পণ্য দেখুন</button></Link>
@@ -29,9 +29,9 @@ export default async function Home() {
       </div>
 
 
-      <div>
+      <div className='mx-2 md:mx-0'>
         <h2 className="text-2xl font-semibold"><span className="text-red-600">▲</span> আজ দাম বেড়েছে</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4">
           {
           data
             .filter(product=>product.change.pct>0)
@@ -42,9 +42,9 @@ export default async function Home() {
         </div>
       </div>
 
-      <div>
+      <div className='mx-2 md:mx-0'>
         <h2 className="text-2xl font-semibold"><span className="text-green-600">▼</span> আজ দাম কমেছে</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4">
           {
           
           data
@@ -56,10 +56,10 @@ export default async function Home() {
         </div>
       </div>
 
-      <div>
+      <div className='mx-2 md:mx-0'>
         <h2 id="all" className="text-2xl font-semibold">সব পণ্য</h2>
         <p>মোট {data.length}টি পণ্য দেখানো হচ্ছে</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4">
           {
           data.map(product=><Card key={product.id} product={product}/>)
           }
