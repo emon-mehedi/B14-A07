@@ -126,7 +126,7 @@ export default function SignIn() {
         </div>
 
         <div className="text-center">
-          একাউন্ট আছে? <Link href={'/signIn'} className="underline text-green-600">সাইন ইন করুন</Link>
+          একাউন্ট নেই? <Link href={'/signUp'} className="underline text-green-600">সাইন আপ করুন</Link>
         </div>
 
       </Form>
