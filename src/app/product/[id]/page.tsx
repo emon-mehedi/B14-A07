@@ -22,30 +22,30 @@ const Product = async ({ params }: { params: { id: number } }) => {
     return (
       <div className='container mx-auto space-y-3 py-2'>
 
-        <div className='space-x-2'>
+        <div className='space-x-2 mx-2 md:mx-0'>
           <Link href={'/'}>হোম</Link> <span>&gt;</span>
           <Link href={`/category/${product.category}`}>{product.categoryNameBn}</Link> <span>&gt;</span>
           <Link href={`/product/${product.id}`}>{product.nameBn}</Link>
         </div>
 
-        <div className='bg-white flex flex-row justify-between p-3 rounded-2xl'>
+        <div className='bg-white flex flex-row justify-between p-3 rounded-2xl mx-2 md:mx-0'>
           <div className='flex flex-row items-center gap-2'>
             <p className='text-6xl bg-[#e6f1e7] p-1 rounded-xl'>{product.image}</p>
             <div>
-              <h1 className='text-4xl'>{product.nameBn}</h1>
-              <p>প্রতি {product.unit} {product.categoryNameBn}</p>
+              <h1 className='text-2xl md:text-4xl'>{product.nameBn}</h1>
+              <p className='text-sm md:text-md'>প্রতি {product.unit} {product.categoryNameBn}</p>
               <div>গতকালের তুলনায় আজকে দাম {
                 product.change.pct > 0
                   ? <span className='font-bold'>বেড়েছে <span className='font-normal'>{product.change.pct}%</span></span>
-                  : <span className='font-bold'>বেড়েছে <span className='font-normal'>{product.change.pct}%</span></span>
+                  : <span className='font-bold'>কমেছে <span className='font-normal'>{Math.abs(product.change.pct)}%</span></span>
               }
               </div>
             </div>
           </div>
           <div className='bg-[#e6f1e7] p-3 rounded-2xl flex flex-col justify-center items-center'>
-            <p>আজকের দাম</p>
-            <h1 className='text-4xl font-bold'>{product.today}</h1>
-            <p>টাকা/{product.unit}</p>
+            <p className='text-sm md:text-md'>আজকের দাম</p>
+            <h1 className='text-2xl md:text-4xl font-bold'>{product.today}</h1>
+            <p className='text-sm md:text-md'>টাকা/{product.unit}</p>
             <div>
               {
                 product.change.pct > 0
@@ -56,27 +56,27 @@ const Product = async ({ params }: { params: { id: number } }) => {
           </div>
         </div>
 
-        <div className='p-3 bg-white rounded-2xl space-y-2'>
-          <h2 className='text-2xl py-2'>দামের সারসংক্ষেপ</h2>
+        <div className='p-3 bg-white rounded-2xl space-y-2 mx-2 md:mx-0'>
+          <h2 className='text-xl md:text-2xl py-2'>দামের সারসংক্ষেপ</h2>
 
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
             <div className='border border-slate-300 rounded-2xl p-4 text-sm'>
               <p>সর্বনিম্ন দাম</p>
-              <h2 className='text-4xl text-green-600'>
+              <h2 className='text-2xl md:text-4xl text-green-600'>
                 {lowest} টাকা
               </h2>
               <p>সবচেয়ে কম দামের বাজার</p>
             </div>
             <div className='border border-slate-300 rounded-2xl p-4 text-sm'>
               <p>সর্বাধিক দাম</p>
-              <h2 className='text-4xl text-red-600'>
+              <h2 className='text-2xl md:text-4xl text-red-600'>
                 {highest} টাকা
               </h2>
               <p>সবচেয়ে বেশি দামের বাজার</p>
             </div>
             <div className='border border-slate-300 rounded-2xl p-4 text-sm'>
               <p>গড় দাম</p>
-              <h2 className='text-4xl text-green-600'>
+              <h2 className='text-2xl md:text-4xl text-green-600'>
                 {(highest + lowest) / 2} টাকা
               </h2>
               <p>প্রতি {product.unit} -এর হিসাবে</p>

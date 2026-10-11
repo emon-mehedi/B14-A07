@@ -13,7 +13,7 @@ const Sort = ({ data }: { data: IProduct[] }) => {
   }
   return (
     <>
-      <div className='flex flex-row justify-between'>
+      <div className='flex flex-row justify-between mx-2 md:mx-0'>
         <div>মোট {data.length}টি পণ্য দেখানো হচ্ছে</div>
         <select className="select rounded-xl pt-2" onChange={(e) => { setSortby(e.target.value as "default" | "lowHigh" | "highLow") }}>
           <option value="default">ডিফল্ট</option>
@@ -21,7 +21,7 @@ const Sort = ({ data }: { data: IProduct[] }) => {
           <option value="highLow">দাম: বেশি থেকে কম</option>
         </select>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 mx-2 md:mx-0">
         {
           sortedData.map(product => <Card key={product.id} product={product} />)
         }

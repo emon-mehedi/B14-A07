@@ -24,13 +24,13 @@ const Profile = () => {
     toast.success("নাম সফলভাবে হালনাগাদ হয়েছে")
   }
   return (
-    <div className='space-y-5'>
-      <div>
-        <h1 className='text-4xl font-bold'>আমার প্রফাইল</h1>
+    <div className='space-y-5 w-full md:w-md lg:w-lg my-3'>
+      <div className='mx-2 md:mx-0 text-center md:text-start'>
+        <h1 className='text-4xl font-bold'>আমার প্রোফাইল</h1>
         <p>আপনার একাউন্টের তথ্য এখানে দেখুন।</p>
       </div>
 
-      <div className='flex flex-row justify-between items-center bg-white rounded-2xl p-4'>
+      <div className='flex flex-row justify-between items-center bg-white rounded-2xl p-4 w-full mx-2 md:mx-0'>
         <div className='flex flex-row justify-center items-center gap-2'>
           {session?.user.image
             ? <Image src={session.user.image} alt={session.user.name || "User"} width={12} height={12} className="w-12 h-12 rounded-xl object-cover" />
@@ -48,8 +48,8 @@ const Profile = () => {
         </Link>
       </div>
 
-      <div>
-        <Form className="flex w-md md:w-xl lg:w-2xl flex-col gap-4 bg-white p-5 rounded-2xl" onSubmit={onSubmit}>
+      <div className='w-full mx-2 md:mx-0'>
+        <Form className="flex flex-col gap-4 bg-white p-5 rounded-2xl" onSubmit={onSubmit}>
           <h3 className='text-lg font-bold'>তথ্য</h3>
           <TextField isRequired name="name">
             <Label>নাম</Label>

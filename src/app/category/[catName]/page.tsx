@@ -24,7 +24,7 @@ const Category = async ({ params }: { params: { catName: string } }) => {
   } else{
   return (
     <div className='container mx-auto space-y-2 my-5'>
-      <div className='flex flex-row bg-white rounded-2xl p-5 shadow-sm  border border-slate-100 gap-2'>
+      <div className='flex flex-row bg-white rounded-2xl p-5 shadow-sm  border border-slate-100 gap-2 mx-2 md:mx-0'>
         <p className='text-4xl'>{category?.icon}</p>
         <div>
           <h2 className='text-4xl'>{category?.nameBn}</h2>
