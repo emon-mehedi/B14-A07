@@ -65,12 +65,12 @@ export default function SignUp() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center space-y-5">
-      <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center space-y-5 my-3 md:my-0 px-2 md:px-0 max-w-full md:w-sm">
+      <div className="flex flex-col justify-center items-center px-2">
         <h2 className="text-2xl font-bold">একাউন্ট তৈরি করুন</h2>
-        <p>বিনা খরচে সাইন আপ করে সব বিস্তারিত দাম দেখুন।</p>
+        <p className="text-center">বিনা খরচে সাইন আপ করে সব বিস্তারিত দাম দেখুন।</p>
       </div>
-      <Form className="flex w-96 flex-col gap-4 bg-white p-5 rounded-2xl" onSubmit={onSubmit}>
+      <Form className="flex w-full flex-col gap-4 bg-white p-5 rounded-2xl" onSubmit={onSubmit}>
         {/* Name */}
         <TextField isRequired name="name" >
           <Label>নাম</Label>
@@ -102,7 +102,7 @@ export default function SignUp() {
           name="password"
           type="password"
           onChange={(value) => {
-            passwordRef.current = value; // পাসওয়ার্ড পরিবর্তন হলে রেফারেন্সে সেভ করা হচ্ছে
+            passwordRef.current = value;
           }}
           validate={(value) => {
             if (value.length < 8) {
@@ -149,11 +149,11 @@ export default function SignUp() {
         </div>
 
         <div className="flex flex-row justify-between items-center gap-2">
-          <Button onClick={()=>handleGoogleSignIn()} className="flex-1 rounded-xl bg-white text-black border border-black py-5">
+          <Button onClick={()=>handleGoogleSignIn()} className="flex-1 rounded-xl bg-white text-black border border-black py-5 max-w-[49%]">
             <FcGoogle />
             <span>Google দিয়ে <br></br>চালিয়ে যান</span>
           </Button>
-          <Button onClick={()=>handleGithubSignIn()} className="flex-1 rounded-xl bg-white text-black border border-black py-5">
+          <Button onClick={()=>handleGithubSignIn()} className="flex-1 rounded-xl bg-white text-black border border-black py-5 max-w-[49%]">
             <FaGithub />
             <span>Github দিয়ে<br></br> চালিয়ে যান</span>
           </Button>
